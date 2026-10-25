@@ -1,0 +1,186 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="SkillScope AI helps students analyze technical skills and explore career learning paths.">
+  <title>SkillScope AI | Career Intelligence</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="script.js" defer></script>
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar">
+      <a class="brand" href="#" aria-label="SkillScope AI home">
+        <span class="brand-icon">S</span>
+        <span>SkillScope<span class="brand-ai"> AI</span></span>
+      </a>
+
+      <p class="nav-label">WORKSPACE</p>
+      <a class="nav-link active" href="#dashboard">▦ &nbsp; Dashboard</a>
+      <a class="nav-link" href="#assessment">◎ &nbsp; Skill Assessment</a>
+      <a class="nav-link" href="#roadmap">↗ &nbsp; Learning Roadmap</a>
+
+      <div class="sidebar-note">
+        <span class="note-icon">✦</span>
+        <h3>Your future starts here.</h3>
+        <p>Understand your strengths. Discover what to learn next.</p>
+      </div>
+
+      <div class="sidebar-footer">STUDENT EDITION · 1.0</div>
+    </aside>
+
+    <main class="main-content" id="dashboard">
+      <header class="topbar">
+        <div>
+          <p class="eyebrow">YOUR PERSONAL CAREER COMPANION</p>
+          <h1>Skill Intelligence</h1>
+        </div>
+        <button class="button button-outline" id="printBtn" type="button">
+          ↓ &nbsp; Export report
+        </button>
+      </header>
+
+      <section class="welcome-card">
+        <div class="welcome-copy">
+          <span class="welcome-tag">✦ YOUR POTENTIAL, MAPPED</span>
+          <h2>Turn your skills into<br>your next opportunity.</h2>
+          <p>Discover your strengths, close your skill gaps, and create a smarter learning path.</p>
+          <a class="button button-light" href="#assessment">Start assessment &nbsp; →</a>
+        </div>
+        <div class="welcome-art" aria-hidden="true">
+          <div class="orbit orbit-one"></div>
+          <div class="orbit orbit-two"></div>
+          <div class="art-core">✦</div>
+          <span class="float-card float-one">01 · LEARN</span>
+          <span class="float-card float-two">02 · GROW</span>
+          <span class="float-card float-three">03 · BUILD</span>
+        </div>
+      </section>
+
+      <section class="stats-grid" aria-label="Assessment summary">
+        <article class="stat-card">
+          <div class="stat-top"><span>Career readiness</span><span>◉</span></div>
+          <div class="stat-value" id="readinessStat">—<small>%</small></div>
+          <p id="readinessCaption">Complete an assessment to begin</p>
+        </article>
+        <article class="stat-card">
+          <div class="stat-top"><span>Skills assessed</span><span>◇</span></div>
+          <div class="stat-value" id="assessedStat">0<small>/5</small></div>
+          <p>Technical skill areas</p>
+        </article>
+        <article class="stat-card">
+          <div class="stat-top"><span>Priority gaps</span><span>↗</span></div>
+          <div class="stat-value" id="gapsStat">—</div>
+          <p>Areas to work on</p>
+        </article>
+      </section>
+
+      <section class="panel assessment-panel" id="assessment">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">STEP 01 · YOUR PROFILE</p>
+            <h2>Skill assessment</h2>
+            <p class="section-description">Choose a career and rate your current knowledge honestly.</p>
+          </div>
+          <span class="section-number">01 / 03</span>
+        </div>
+
+        <label class="field-label" for="careerSelect">YOUR TARGET CAREER</label>
+        <select id="careerSelect" class="career-select">
+          <option value="analyst">Data Analyst</option>
+          <option value="scientist">Data Scientist</option>
+          <option value="ml">Machine Learning Engineer</option>
+        </select>
+
+        <div class="rating-guide">
+          <span>YOUR CURRENT SKILL LEVEL</span>
+          <span>0 = Beginner · 5 = Advanced</span>
+        </div>
+
+        <div id="skillsContainer" class="skills-container"></div>
+
+        <div class="assessment-actions">
+          <p id="inputHint" role="status">Adjust your ratings, then analyze your skills.</p>
+          <button class="button button-primary" id="analyzeBtn" type="button">
+            Analyze my skills &nbsp; →
+          </button>
+        </div>
+      </section>
+
+      <section class="results-section" id="results" aria-live="polite">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">STEP 02 · YOUR INSIGHTS</p>
+            <h2>Your career snapshot</h2>
+            <p class="section-description">Your results update when you analyze your skills.</p>
+          </div>
+          <span class="section-number">02 / 03</span>
+        </div>
+
+        <div class="results-grid">
+          <article class="panel score-panel">
+            <p class="eyebrow">READINESS INDICATOR</p>
+            <div class="score-ring" id="scoreRing" style="--score:0">
+              <div class="score-inner">
+                <strong id="scoreValue">—%</strong>
+                <span>Readiness</span>
+              </div>
+            </div>
+            <h3 id="scoreTitle">Ready when you are</h3>
+            <p id="scoreDescription">Complete your skill assessment to see your personalized results.</p>
+            <p class="small-note">An indicative score based on your ratings and selected career targets.</p>
+          </article>
+
+          <article class="panel breakdown-panel">
+            <p class="eyebrow">SKILL-BY-SKILL VIEW</p>
+            <h3>Your skills vs. career targets</h3>
+            <div id="breakdownContainer" class="breakdown-container">
+              <p class="empty-state">Your skill comparison will appear here.</p>
+            </div>
+          </article>
+        </div>
+
+        <article class="panel insight-panel">
+          <div>
+            <p class="eyebrow">YOUR COMPETITIVE ADVANTAGE</p>
+            <h3>Current strengths</h3>
+            <div id="strengthsContainer" class="tag-list">
+              <span class="empty-state">Your strengths will appear here.</span>
+            </div>
+          </div>
+          <div>
+            <p class="eyebrow">ROOM TO GROW</p>
+            <h3>Priority skill gaps</h3>
+            <div id="gapsContainer" class="tag-list">
+              <span class="empty-state">Your priorities will appear here.</span>
+            </div>
+          </div>
+        </article>
+      </section>
+
+      <section class="panel roadmap-panel" id="roadmap">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">STEP 03 · YOUR NEXT MOVE</p>
+            <h2>Your learning roadmap</h2>
+            <p class="section-description">Turn your skill gaps into practical actions.</p>
+          </div>
+          <span class="section-number">03 / 03</span>
+        </div>
+        <div id="roadmapContainer" class="roadmap-list">
+          <div class="empty-state roadmap-empty">
+            Analyze your skills to generate your personalized learning roadmap.
+          </div>
+        </div>
+      </section>
+
+      <footer class="footer">
+        <span>SkillScope AI <span class="footer-dot">●</span> Student Edition</span>
+        <span>Learn with purpose. Grow with direction.</span>
+      </footer>
+    </main>
+  </div>
+</body>
+</html>
